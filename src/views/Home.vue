@@ -88,7 +88,7 @@ export default {
   data() {
     return {
       socialNetworks: [
-        {name: 'Telegram', handle: 't.me/netweak', link: 'https://t.me/netweak', logo: 'https://cdn3.iconfinder.com/data/icons/popular-services-brands-vol-2/512/telegram-512.png'},
+        {name: 'Telegram', handle: 't.me/NoodleCards', link: 'https://t.me/noodlecards', logo: 'https://cdn3.iconfinder.com/data/icons/popular-services-brands-vol-2/512/telegram-512.png'},
         {name: 'Twitter', handle: '@NoodleCards', link: 'https://twitter.com/NoodleCards', logo: 'https://cdn3.iconfinder.com/data/icons/2018-social-media-logotypes/1000/2018_social_media_popular_app_logo_twitter-512.png'},
         {name: 'Medium', handle: 'noodlecards', link: 'https://noodlecards.medium.com/introducing-noodlecards-the-first-nft-game-based-on-mangas-and-anime-b7072eb2f665', logo: 'https://cdn1.iconfinder.com/data/icons/social-media-circle-7/512/Circled_Medium_svg5-512.png'},
       ]
