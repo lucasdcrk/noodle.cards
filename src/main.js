@@ -7,24 +7,25 @@ import './index.css';
 Vue.config.productionTip = false;
 Vue.use(Vuex);
 
-let web3 = require('web3-eth');
-let instance = new web3(web3.givenProvider);
+const config = require('./constants');
+const web3js = require('web3');
+const web3 = new web3js('https://bsc-dataseed1.binance.org:443');
 
-Vue.prototype.web3 = instance;
-Vue.prototype.eth = window.ethereum;
-
-//const contract = require('./assets/abi.json');
+Vue.prototype.config = config;
+Vue.prototype.web3 = web3;
+Vue.prototype.contract = new web3.eth.Contract(config.abi, config.contractAddress);
+Vue.prototype.ethereum = window.ethereum;
 
 const store = new Vuex.Store({
   state: {
-    account: window.ethereum.selectedAddress
+    account: ''
   },
   mutations: {
     setAccount(state, n) {
       state.account = n;
     }
   }
-})
+});
 
 new Vue({
   router,

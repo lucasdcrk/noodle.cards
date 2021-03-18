@@ -10,18 +10,15 @@
             </div>
             <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
               <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-              <a href="#" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Dashboard
-              </a>
-              <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Team
-              </a>
-              <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Projects
-              </a>
-              <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Calendar
-              </a>
+              <navbar-link to="/">
+                Home
+              </navbar-link>
+              <navbar-link to="/farming">
+                Farming
+              </navbar-link>
+              <navbar-link to="/guide">
+                Guide
+              </navbar-link>
             </div>
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:items-center">
@@ -102,7 +99,9 @@
 </template>
 
 <script>
+import NavbarLink from '@/components/NavbarLink';
 export default {
+  components: {NavbarLink},
   data() {
     return {
       balance: null
@@ -110,17 +109,22 @@ export default {
   },
   methods: {
     async connect() {
-      let accounts = await this.eth.request({ method: 'eth_requestAccounts' });
+      let accounts = await this.ethereum.request({ method: 'eth_requestAccounts' });
 
-      this.$store.commit('setAccount', {
+      await this.$store.commit('setAccount', {
         account: accounts[0]
       });
+
+      await this.updateBalance();
     },
     async updateBalance() {
-      this.balance = await this.web3.getBalance(this.$store.state.account);
+      this.balance = await this.contract.methods.balanceOf(this.$store.state.account).call();
+      this.balance = this.web3.utils.fromWei(this.balance, 'ether');
     }
   },
   mounted() {
+    if (this.$store.state.account)
+      this.updateBalance();
   }
 }
 </script>
