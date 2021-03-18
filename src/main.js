@@ -18,7 +18,7 @@ Vue.prototype.ethereum = window.ethereum;
 
 const store = new Vuex.Store({
   state: {
-    account: ''
+    account: window.ethereum ? window.ethereum.selectedAddress : null
   },
   mutations: {
     setAccount(state, n) {

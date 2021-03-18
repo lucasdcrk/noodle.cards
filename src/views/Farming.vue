@@ -1,7 +1,6 @@
 <template>
   <app>
-    <button @click="approve">Approve contract</button>
-    <button @click="transfer">Transfer</button>
+    Coming soon ...
   </app>
 </template>
 

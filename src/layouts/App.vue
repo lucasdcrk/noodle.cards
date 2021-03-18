@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="bg-white shadow">
+    <nav class="bg-white shadow border-b">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex">
@@ -16,9 +16,9 @@
               <navbar-link to="/farming">
                 Farming
               </navbar-link>
-              <navbar-link to="/guide">
+              <a href="https://guide.noodle.cards" target="_blank" class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700">
                 Guide
-              </navbar-link>
+              </a>
             </div>
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:items-center">
@@ -94,12 +94,29 @@
         </div>
       </div>
     </nav>
-    <slot/>
+
+    <div class="bg-gray-50 py-5">
+      <slot/>
+    </div>
+
+    <div class="bg-white">
+      <div class="max-w-screen-xl mx-auto py-7 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+        <div class="md:order-2">
+
+        </div>
+        <div class="mt-8 md:mt-0 md:order-1">
+          <p class="text-center text-base leading-6 text-gray-400">
+            &copy; 2021 NoodleCards. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import NavbarLink from '@/components/NavbarLink';
+
 export default {
   components: {NavbarLink},
   data() {
