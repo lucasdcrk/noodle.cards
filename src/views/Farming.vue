@@ -26,7 +26,7 @@
               Fetching contract
             </h3>
             <p class="mt-3 leading-5 text-gray-500">
-              We are checking for permission to manage your LP tokens, please wait a few seconds.
+              We are checking for permission to manage your NDL-BNB LP tokens, please wait a few seconds.
             </p>
           </div>
           <div class="text-sm leading-5">
@@ -44,12 +44,12 @@
                 </h3>
                 <div class="mt-2 max-w-xl text-sm text-gray-500">
                   <p>
-                    Enter the amount of LP you want to stake, you will be able to unstake them later.
+                    Enter the amount of NDL-BNB LP you want to stake, you will be able to unstake them later.
                   </p>
                 </div>
                 <div v-if="isStaking !== true" class="mt-5 sm:flex sm:items-center">
                   <div class="w-full sm:max-w-xs">
-                    <label for="amount" class="sr-only">Amount in LP</label>
+                    <label for="amount" class="sr-only">Amount in NDL-BNB LP</label>
                     <input id="amount" type="number" min="1" max="100000" v-model="stakeAmount" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="1000 LP">
                   </div>
                   <button @click="stake" class="mt-3 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
@@ -73,7 +73,7 @@
                       Stacked amount
                     </dt>
                     <dd class="mt-1 text-3xl font-semibold text-gray-900">
-                      {{web3.utils.fromWei(stakedAmount, 'ether')}} LP
+                      {{web3.utils.fromWei(stakedAmount, 'ether')}} NDL-BNB LP
                     </dd>
                   </div>
                   <div v-if="!isHarvesting && !isUnstaking">
