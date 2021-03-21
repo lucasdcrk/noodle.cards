@@ -162,7 +162,7 @@ export default {
     async approve() {
       this.isApproving = true;
 
-      this.swapContract.methods.approve(this.config.farmingAddress, '-1')
+      this.swapContract.methods.approve(this.config.farmingAddress, '1000000000000000000000000')
       .send({
         from: this.$store.state.account,
       })
