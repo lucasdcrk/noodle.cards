@@ -1,6 +1,6 @@
 <template>
   <app>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-5">
+    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 mt-5">
       <!-- Main 3 column grid -->
       <div class="grid grid-cols-1 gap-4 items-start lg:grid-cols-3 lg:gap-8">
         <!-- Left column -->

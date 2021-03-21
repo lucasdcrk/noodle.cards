@@ -68,11 +68,11 @@ export default {
     async connect() {
       let accounts = await this.ethereum.request({ method: 'eth_requestAccounts' });
 
-      await this.$store.commit('setAccount', {
+      this.$store.commit('setAccount', {
         account: accounts[0]
       });
 
-      await this.updateBalance();
+      this.bus.$emit('loggedIn', {account: accounts[0]});
     },
     async updateBalance() {
       this.balance = await this.contract.methods.balanceOf(this.$store.state.account).call();
