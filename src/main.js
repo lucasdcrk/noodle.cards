@@ -19,7 +19,7 @@ Vue.prototype.farmingContract = new web3.eth.Contract(config.farmingAbi, config.
 Vue.prototype.swapContract = new web3.eth.Contract(config.swapAbi, config.swapAddress);
 Vue.prototype.ethereum = window.ethereum;
 
-//window.ethereum.enable();
+window.ethereum.enable();
 
 const store = new Vuex.Store({
   state: {
