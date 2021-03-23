@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="bg-white shadow border-b">
+    <nav class="bg-white shadow">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex">
@@ -23,11 +23,19 @@
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:items-center">
             <div class="flex-shrink-0">
-              <button v-if="!$store.state.account" @click="connect" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              <a v-if="!$store.state.hasMetamask" href="https://metamask.io/download.html" target="_blank" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-600 shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                Install Metamask
+              </a>
+              <button v-else-if="!$store.state.isConnected" @click="connect" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 Connect
               </button>
-              <div v-else-if="balance !== null">
-                Balance: {{balance}} NDL
+              <div v-else-if="$store.state.balance !== null">
+                <div class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800">
+                  Balance: {{parseFloat($store.state.balance).toFixed(0)}} NDL
+                </div>
+              </div>
+              <div v-else>
+                Loading ...
               </div>
             </div>
           </div>
@@ -35,21 +43,8 @@
       </div>
     </nav>
 
-    <div class="bg-gray-50 py-5">
+    <div class="py-5">
       <slot/>
-    </div>
-
-    <div class="bg-white">
-      <div class="max-w-screen-xl mx-auto py-7 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
-        <div class="md:order-2">
-
-        </div>
-        <div class="mt-8 md:mt-0 md:order-1">
-          <p class="text-center text-base leading-6 text-gray-400">
-            &copy; 2021 NoodleCards. All rights reserved.
-          </p>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -59,29 +54,10 @@ import NavbarLink from '@/components/NavbarLink';
 
 export default {
   components: {NavbarLink},
-  data() {
-    return {
-      balance: null
-    }
-  },
   methods: {
     async connect() {
-      let accounts = await this.ethereum.request({ method: 'eth_requestAccounts' });
-
-      this.$store.commit('setAccount', {
-        account: accounts[0]
-      });
-
-      this.bus.$emit('loggedIn', {account: accounts[0]});
-    },
-    async updateBalance() {
-      this.balance = await this.contract.methods.balanceOf(this.$store.state.account).call();
-      this.balance = this.web3.utils.fromWei(this.balance, 'ether');
+      await this.ethereum.request({ method: 'eth_requestAccounts' });
     }
-  },
-  mounted() {
-    if (this.$store.state.account)
-      this.updateBalance();
   }
 }
 </script>

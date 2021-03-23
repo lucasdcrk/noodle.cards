@@ -1,5 +1,6 @@
 <template>
   <app>
+
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 mt-5">
       <!-- Main 3 column grid -->
       <div class="grid grid-cols-1 gap-4 items-start lg:grid-cols-3 lg:gap-8">
@@ -69,8 +70,8 @@
             </div>
           </section>
 
-          <section>
-            <a class="twitter-timeline" href="https://twitter.com/NoodleCards?ref_src=twsrc%5Etfw">Tweets by NoodleCards</a>
+          <section class="h-80">
+            <a class="twitter-timeline" data-height="600" href="https://twitter.com/NoodleCards?ref_src=twsrc%5Etfw">Tweets by NoodleCards</a>
           </section>
         </div>
       </div>
