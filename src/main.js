@@ -77,7 +77,7 @@ if (typeof ethereum !== 'undefined') {
       store.commit('setBalance', value);
     });
 
-    getHarvest().then(r => store.commit('setRewards', r));
+    //getHarvest().then(r => store.commit('setRewards', r));
 
     bus.$emit('changedAccount');
   });
@@ -93,7 +93,7 @@ if (typeof ethereum !== 'undefined') {
       store.commit('setBalance', value);
     });
 
-    getHarvest().then(r => store.commit('setRewards', r));
+    //getHarvest().then(r => store.commit('setRewards', r));
   }
 }
 
@@ -103,9 +103,9 @@ setInterval(() => {
   });
 }, 5000);
 
-setInterval(() => {
-  getHarvest().then(r => store.commit('setRewards', r));
-}, 10000);
+//setInterval(() => {
+//  getHarvest().then(r => store.commit('setRewards', r));
+//}, 10000);
 
 new Vue({
   router,
