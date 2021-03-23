@@ -27,7 +27,7 @@
                 Connect
               </button>
               <div v-else-if="balance !== null">
-                Balance: {{balance}} NDL
+                Balance: {{balance.toFixed(2)}} NDL
               </div>
             </div>
           </div>
