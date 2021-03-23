@@ -225,6 +225,8 @@ export default {
       this.updateData();
     }
 
+    this.bus.$on('changedAccount', () => this.updateData());
+
     this.updateAPR();
   }
 }
