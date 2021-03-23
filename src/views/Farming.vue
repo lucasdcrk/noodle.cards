@@ -48,7 +48,7 @@
                   </p>
                 </div>
                 <div v-if="typeof availableStake !== 'undefined'" class="mt-2 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-indigo-100 text-indigo-800">
-                  Available: {{availableStake}} NDL-BNB LP
+                  Available: {{parseFloat(availableStake).toFixed(2)}} NDL-BNB LP
                 </div>
                 <div v-if="isStaking !== true">
                   <div class="mt-5 sm:flex sm:items-center sm:w-2/3 sm:mx-auto">
