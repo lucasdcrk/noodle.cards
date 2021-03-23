@@ -49,7 +49,7 @@ const store = new Vuex.Store({
   }
 });
 
-async function getHarvest()
+/*async function getHarvest()
 {
   let block = await web3.eth.getBlockNumber();
   let blockSubscription = await farmingContract.methods.blockSubscription(ethereum.selectedAddress).call();
@@ -67,7 +67,7 @@ async function getHarvest()
   block /= totalStaked;
 
   return block;
-}
+}*/
 
 if (typeof ethereum !== 'undefined') {
   ethereum.on('accountsChanged', (accounts) => {

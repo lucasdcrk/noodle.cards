@@ -44,15 +44,23 @@
                 </h3>
                 <div class="mt-2 max-w-xl text-sm text-gray-500">
                   <p>
-                    Enter the amount of NDL-BNB LP you want to stake, you will be able to unstake them later.
+                    Enter the amount of tokens you want to stake, you will be able to unstake them later.
                   </p>
                 </div>
-                <div v-if="isStaking !== true" class="mt-5 sm:flex sm:items-center">
-                  <div class="w-full sm:max-w-xs">
-                    <label for="amount" class="sr-only">Amount in NDL-BNB LP</label>
-                    <input id="amount" type="number" min="1" max="100000" v-model="stakeAmount" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="1000 LP">
+                <div v-if="typeof availableStake !== 'undefined'" class="mt-2 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-indigo-100 text-indigo-800">
+                  Available: {{availableStake}} NDL-BNB LP
+                </div>
+                <div v-if="isStaking !== true">
+                  <div class="mt-5 sm:flex sm:items-center sm:w-2/3 sm:mx-auto">
+                    <div class="w-full">
+                      <div class="flex justify-between">
+                        <label for="amount" class="block text-sm font-medium text-gray-700">Amount to stake</label>
+                        <button @click="stakeAmount = availableStake" class="text-sm text-gray-500">MAX</button>
+                      </div>
+                      <input id="amount" type="number" min="1" max="100000" v-model="stakeAmount" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="1000 LP">
+                    </div>
                   </div>
-                  <button @click="stake" class="mt-3 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                  <button @click="stake" class="mt-3 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
                     Stake
                   </button>
                 </div>
@@ -150,7 +158,8 @@ export default {
       isHarvesting: false,
       stakeAmount: 0,
       stakedAmount: null,
-      currentAPR: null
+      currentAPR: null,
+      availableStake: 0
     }
   },
   methods: {
@@ -159,6 +168,9 @@ export default {
       .then((response) => {
         this.isApproved = response > 0;
       });
+    },
+    async updateAvailableStake() {
+      this.availableStake = this.web3.utils.fromWei(await this.swapContract.methods.balanceOf(this.$store.state.account).call(), 'ether');
     },
     async approve() {
       this.isApproving = true;
@@ -218,6 +230,7 @@ export default {
     updateData() {
       this.updateApprovalStatus();
       this.updateStakedAmount();
+      this.updateAvailableStake();
     }
   },
   mounted() {
