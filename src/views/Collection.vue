@@ -6,7 +6,7 @@
           <div class="max-w-xl mx-auto py-16 text-center">
             <div class="max-w-xs my-10 mx-auto">
               <h3 class="text-2xl font-medium text-gray-900">
-                No cards in your wallet
+                No cards in your collection
               </h3>
               <p class="mt-3 leading-5 text-gray-500">
                 Cards are obtained by opening cards pack in the appropriate section.
@@ -36,7 +36,7 @@
             Please connect with MetaMask
           </h3>
           <p class="mt-3 leading-5 text-gray-500">
-            MetaMask connection is required in order to access wallet.
+            MetaMask connection is required in order to access your collection.
           </p>
         </div>
         <div class="text-sm leading-5 text-gray-400">

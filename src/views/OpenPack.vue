@@ -8,7 +8,7 @@
               Open a cards pack
             </h3>
             <p class="mt-3 mb-10 leading-5 text-gray-500">
-              Open packs in order to win cards, which you can see in you wallet.
+              Open packs in order to win cards, which you can see in your collection.
             </p>
             <button
                 v-if="canOpenFreePack"

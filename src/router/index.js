@@ -14,8 +14,8 @@ const routes = [
     component: () => import('../views/Farming.vue')
   },
   {
-    path: '/wallet',
-    component: () => import('../views/Wallet.vue')
+    path: '/collection',
+    component: () => import('../views/Collection.vue')
   },
   {
     path: '/open-pack',
