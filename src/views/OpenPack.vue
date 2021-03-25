@@ -23,6 +23,7 @@
             >
               Open pack
             </button>
+            <img width="250px" class="mt-5 mx-auto" src="https://media.discordapp.net/attachments/820269838030078002/824775291846000660/Testpack2.png?width=868&height=1302" alt="">
           </div>
         </div>
       </div>
