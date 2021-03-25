@@ -16,6 +16,12 @@
               <navbar-link to="/farming">
                 Farming
               </navbar-link>
+              <navbar-link to="/open-pack">
+                Open pack
+              </navbar-link>
+              <navbar-link to="/wallet">
+                Wallet
+              </navbar-link>
               <a href="https://guide.noodle.cards" target="_blank" class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700">
                 Guide
               </a>

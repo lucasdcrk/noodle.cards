@@ -12,6 +12,14 @@ const routes = [
   {
     path: '/farming',
     component: () => import('../views/Farming.vue')
+  },
+  {
+    path: '/wallet',
+    component: () => import('../views/Wallet.vue')
+  },
+  {
+    path: '/open-pack',
+    component: () => import('../views/OpenPack')
   }
 ]
 

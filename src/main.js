@@ -15,6 +15,7 @@ const bus = new Vue();
 const contract = new web3.eth.Contract(config.tokenAbi, config.tokenAddress);
 const farmingContract = new web3.eth.Contract(config.farmingAbi, config.farmingAddress);
 const swapContract = new web3.eth.Contract(config.swapAbi, config.swapAddress);
+const cardsContract = new web3.eth.Contract(config.cardsAbi, config.cardsAddress);
 const ethereum = window.ethereum;
 
 Vue.prototype.config = config;
@@ -23,6 +24,7 @@ Vue.prototype.bus = bus;
 Vue.prototype.contract = contract;
 Vue.prototype.farmingContract = farmingContract;
 Vue.prototype.swapContract = swapContract;
+Vue.prototype.cardsContract = cardsContract;
 Vue.prototype.ethereum = ethereum;
 
 const store = new Vuex.Store({
@@ -48,26 +50,6 @@ const store = new Vuex.Store({
     }
   }
 });
-
-/*async function getHarvest()
-{
-  let block = await web3.eth.getBlockNumber();
-  let blockSubscription = await farmingContract.methods.blockSubscription(ethereum.selectedAddress).call();
-  if (!blockSubscription)
-    return '0';
-  let mintedPerBlock = 0.5;
-  let pairBal = await farmingContract.methods.pairBal(ethereum.selectedAddress).call();
-  if (pairBal === 0)
-    return '0';
-  let totalStaked = await farmingContract.methods.totalStaked().call();
-
-  block -= blockSubscription;
-  block *= mintedPerBlock;
-  block *= pairBal;
-  block /= totalStaked;
-
-  return block;
-}*/
 
 if (typeof ethereum !== 'undefined') {
   ethereum.on('accountsChanged', (accounts) => {
@@ -101,7 +83,7 @@ setInterval(() => {
   contract.methods.balanceOf(ethereum.selectedAddress).call().then(value => {
     store.commit('setBalance', value);
   });
-}, 5000);
+}, 20000);
 
 //setInterval(() => {
 //  getHarvest().then(r => store.commit('setRewards', r));
