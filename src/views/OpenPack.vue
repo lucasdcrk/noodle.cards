@@ -79,11 +79,11 @@ export default {
     async openFreePack() {
       this.loading = true;
 
-      await this.cardsContract.methods.openPack().send({
+      await this.cardsContract.methods.openFreePack().send({
         from: this.$store.state.account
       })
-          .then(() => alert('Pack opened successfully, check your wallet in a few minutes.'))
-          .catch(e => alert('Error while opening pack: ' + e.message))
+          .then(() => alert('Free pack opened successfully, check your wallet in a few minutes.'))
+          .catch(e => alert('Error while opening free pack: ' + e.message))
           .finally(() => this.loading = false);
     },
     async checkIfCanOpenFreePack() {
