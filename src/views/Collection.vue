@@ -14,8 +14,8 @@
             </div>
           </div>
         </div>
-        <div v-else class="max-w-xl mx-auto py-16">
-          <div class="grid grid-cols-3 gap-4">
+        <div v-else class="max-w-4xl mx-auto py-16">
+          <div class="grid grid-cols-6 gap-4">
             <div v-for="card in wallet" :key="card.name">
               <img :src="card.image" alt="">
             </div>
@@ -81,8 +81,10 @@ export default {
     }
   },
   mounted() {
-    if (this.$store.state.isConnected)
+    if (this.$store.state.isConnected && this.$store.state.account)
       this.fetchCards();
+    else
+      console.error('Not connected');
   }
 }
 </script>

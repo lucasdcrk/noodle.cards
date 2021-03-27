@@ -26,6 +26,25 @@
                 Guide
               </a>
             </div>
+            <div class="sm:hidden ml-6 flex justify-end items-center">
+              <a v-if="!$store.state.hasMetamask" href="https://metamask.io/download.html" target="_blank" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-600 shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                Install Metamask
+              </a>
+              <button v-else-if="!$store.state.isConnected" @click="connect" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Connect
+              </button>
+              <div v-else-if="$store.state.balance !== null" class="flex gap-1">
+                <div class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800">
+                  Balance: {{parseFloat($store.state.balance).toFixed(0)}} NDL
+                </div>
+                <div v-if="$store.state.rewards" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-green-100 text-green-800">
+                  Harvest: {{parseFloat($store.state.rewards).toFixed(3)}} NDL
+                </div>
+              </div>
+              <div v-else>
+                Loading ...
+              </div>
+            </div>
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:items-center">
             <div class="flex-shrink-0">

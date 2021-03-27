@@ -8,20 +8,20 @@
               Open a cards pack
             </h3>
             <p class="mt-3 mb-10 leading-5 text-gray-500">
-              Open packs in order to win cards, which you can see in your collection.
+              Open packs in order to win cards, which you can see in your collection. Cards may appear up to 6 hours after pack opening due to technical difficulties.
             </p>
             <button
                 v-if="canOpenFreePack"
                 @click="openFreePack"
-                class="mx-2 bg-gray-800 border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-white hover:bg-gray-900"
+                class="m-2 bg-gray-800 border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-white hover:bg-gray-900"
             >
-              Open free pack
+              Open your free pack
             </button>
             <button
                 @click="openPack"
-                class="mx-2 bg-gray-800 border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-white hover:bg-gray-900"
+                class="m-2 bg-gray-800 border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-white hover:bg-gray-900"
             >
-              Open pack
+              Open a new pack for 50 NDL
             </button>
             <img width="250px" class="mt-5 mx-auto" src="https://media.discordapp.net/attachments/820269838030078002/824775291846000660/Testpack2.png?width=868&height=1302" alt="">
           </div>
