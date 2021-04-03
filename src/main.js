@@ -30,7 +30,7 @@ Vue.prototype.ethereum = ethereum;
 const store = new Vuex.Store({
   state: {
     hasMetamask: typeof ethereum !== 'undefined',
-    isConnected: ethereum && ethereum.isConnected(),
+    isConnected: ethereum && ethereum.selectedAddress,
     account: null,
     balance: null,
     rewards: null
@@ -53,13 +53,13 @@ const store = new Vuex.Store({
 
 if (typeof ethereum !== 'undefined') {
   ethereum.on('accountsChanged', (accounts) => {
+    console.log('DEBUG: accountsChanged event');
+    console.log('DEBUG: setAccount ' + accounts[0]);
     store.commit('setAccount', accounts[0] ?? null);
 
     contract.methods.balanceOf(accounts[0]).call().then(value => {
       store.commit('setBalance', value);
     });
-
-    //getHarvest().then(r => store.commit('setRewards', r));
 
     bus.$emit('changedAccount');
   });
@@ -69,25 +69,16 @@ if (typeof ethereum !== 'undefined') {
   });
 
   if (ethereum.selectedAddress) {
+    console.log('DEBUG: Selected address ' + ethereum.selectedAddress);
     store.commit('setAccount', ethereum.selectedAddress);
 
     contract.methods.balanceOf(ethereum.selectedAddress).call().then(value => {
       store.commit('setBalance', value);
     });
-
-    //getHarvest().then(r => store.commit('setRewards', r));
   }
+} else {
+  console.log('DEBUG: Ethereum undefined');
 }
-
-setInterval(() => {
-  contract.methods.balanceOf(ethereum.selectedAddress).call().then(value => {
-    store.commit('setBalance', value);
-  });
-}, 20000);
-
-//setInterval(() => {
-//  getHarvest().then(r => store.commit('setRewards', r));
-//}, 10000);
 
 new Vue({
   router,
