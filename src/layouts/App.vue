@@ -33,12 +33,12 @@
               <button v-else-if="!$store.state.isConnected" @click="connect" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 Connect
               </button>
-              <div v-else-if="$store.state.balance !== null" class="flex gap-1">
-                <div class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800">
-                  Balance: {{parseFloat($store.state.balance).toFixed(0)}} NDL
+              <div v-else-if="$store.state.isConnected" class="flex gap-1">
+                <div class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
+                  NDL value: {{parseFloat($store.state.tokenPrice)}}$
                 </div>
-                <div v-if="$store.state.rewards" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-green-100 text-green-800">
-                  Harvest: {{parseFloat($store.state.rewards).toFixed(3)}} NDL
+                <div v-if="$store.state.balance" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800">
+                  Balance: {{parseFloat($store.state.balance).toFixed(0)}} NDL
                 </div>
               </div>
               <div v-else>
@@ -55,11 +55,11 @@
                 Connect
               </button>
               <div v-else-if="$store.state.balance !== null" class="flex gap-1">
+                <div class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
+                  NDL value: {{parseFloat($store.state.tokenPrice)}}$
+                </div>
                 <div class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800">
                   Balance: {{parseFloat($store.state.balance).toFixed(0)}} NDL
-                </div>
-                <div v-if="$store.state.rewards" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-green-100 text-green-800">
-                  Harvest: {{parseFloat($store.state.rewards).toFixed(3)}} NDL
                 </div>
               </div>
               <div v-else>

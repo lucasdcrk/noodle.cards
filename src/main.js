@@ -16,6 +16,7 @@ const contract = new web3.eth.Contract(config.tokenAbi, config.tokenAddress);
 const farmingContract = new web3.eth.Contract(config.farmingAbi, config.farmingAddress);
 const swapContract = new web3.eth.Contract(config.swapAbi, config.swapAddress);
 const cardsContract = new web3.eth.Contract(config.cardsAbi, config.cardsAddress);
+const priceContract = new web3.eth.Contract(config.priceAbi, config.priceAddress);
 const ethereum = window.ethereum;
 
 Vue.prototype.config = config;
@@ -33,7 +34,8 @@ const store = new Vuex.Store({
     isConnected: ethereum && ethereum.selectedAddress,
     account: null,
     balance: null,
-    rewards: null
+    rewards: null,
+    tokenPrice: null
   },
   mutations: {
     setAccount(state, n) {
@@ -47,6 +49,9 @@ const store = new Vuex.Store({
     },
     setIsConnected(state, n) {
       state.isConnected = n;
+    },
+    setTokenPrice(state, n) {
+      state.tokenPrice = n;
     }
   }
 });
@@ -76,6 +81,10 @@ if (typeof ethereum !== 'undefined') {
       store.commit('setBalance', value);
     });
   }
+
+  priceContract.methods.getPriceToken().call().then(v => {
+    store.commit('setTokenPrice', v / 10000);
+  });
 } else {
   console.log('DEBUG: Ethereum undefined');
 }
